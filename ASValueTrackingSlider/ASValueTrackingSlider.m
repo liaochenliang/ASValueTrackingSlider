@@ -398,13 +398,19 @@
 - (void)cancelTrackingWithEvent:(UIEvent *)event
 {
     [super cancelTrackingWithEvent:event];
-    if (self.popUpViewAlwaysOn == NO) [self _hidePopUpViewAnimated:YES];
+    if (self.popUpViewAlwaysOn == NO) {[self _hidePopUpViewAnimated:YES];}
+    if ([self.delegate respondsToSelector:@selector(sliderViewWillEndTouch:)]) {
+        [self.delegate sliderViewWillEndTouch:self];
+    }
 }
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super endTrackingWithTouch:touch withEvent:event];
-    if (self.popUpViewAlwaysOn == NO) [self _hidePopUpViewAnimated:YES];
+    if (self.popUpViewAlwaysOn == NO){[self _hidePopUpViewAnimated:YES];}
+    if ([self.delegate respondsToSelector:@selector(sliderViewWillEndTouch:)]) {
+        [self.delegate sliderViewWillEndTouch:self];
+    }
 }
 
 @end
